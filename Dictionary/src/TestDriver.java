@@ -25,6 +25,10 @@ public class TestDriver {
 			e.printStackTrace();
 		}
 		System.out.println(test.toString());
+		
+		BSTDictionary temp = new BSTDictionary();
+		temp.add(new Word("hello", "adverb", "definition for hello"));
+		System.out.println(temp.containsGet("hello"));
 	}
 	
 }

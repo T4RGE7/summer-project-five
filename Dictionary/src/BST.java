@@ -5,7 +5,7 @@
  */
 public class BST<T extends Comparable<T>> implements BSTInterface<T> {
 	
-	private BSTNode<T> root;
+	protected BSTNode<T> root;
 	private int size;
 
 	public BST() {
