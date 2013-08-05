@@ -150,6 +150,7 @@ public class MainActivity extends Activity {
 		add.setVisibility(-1);
 		pOS.setClickable(true);
 		word.setTextColor(Color.BLACK);
+		word.setSelection(0);
 	}
 	
 	public void addButton(View v) {
@@ -161,7 +162,7 @@ public class MainActivity extends Activity {
 		String wordToAdd = word.getText().toString();
 		String definitionToAdd = definition.getText().toString();
 		pOS.setClickable(true);
-		if(wordToAdd.matches("[A-Z]?[a-z A-Z \\- ']*") && definitionToAdd.length() > 0 && pOS.getSelectedItemPosition() > 0) {
+		if(wordToAdd.matches("[A-Z ^\\d]?[a-z A-Z \\- ' ^\\d]*") && definitionToAdd.length() > 0 && pOS.getSelectedItemPosition() > 0) {
 			this.dictionary.add(new Word(wordToAdd, pOS.getSelectedItem().toString(), definitionToAdd));
 			this.saveDictionary();
 			word.setText(wordToAdd + " Added Successfully!");
@@ -236,14 +237,14 @@ public class MainActivity extends Activity {
 		try {
 			if (oIS != null) {
 				this.dictionary = (BSTDictionary) oIS.readObject();
-				this.dictionary.contains(new Word("help", null, null));
-				word.setText((this.dictionary.contains(new Word("help", null, null))) ? "true" : "false");
+//				this.dictionary.contains(new Word("help", null, null));
+//				word.setText((this.dictionary.contains(new Word("help", null, null))) ? "true" : "false");
 				oIS.close();
 			} else {
 				throw new IOException();
 			}
 		} catch (IOException e) {
-			word.setText("gah");
+		//	word.setText("gah");
 			this.dictionary = new BSTDictionary();
 			while(temp.hasNextLine()) {
 				String line = temp.nextLine();
@@ -284,10 +285,11 @@ public class MainActivity extends Activity {
 	    
 	    try {
 			ObjectOutputStream oOS = new ObjectOutputStream(new FileOutputStream(dictionary));
-//			FileOutputStream fOS = new FileOutputStream(dictionary2);
-//			fOS.write(this.dictionary.toString().getBytes());
-//			fOS.flush();
-//			fOS.close();
+			FileOutputStream fOS = new FileOutputStream(dictionary2);
+			fOS.write((this.dictionary.size() + " entries.\n").getBytes());
+			fOS.write(this.dictionary.toString().getBytes());
+			fOS.flush();
+			fOS.close();
 			oOS.writeObject(this.dictionary);
 			oOS.flush();
 			oOS.close();

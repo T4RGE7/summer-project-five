@@ -1,11 +1,18 @@
 
+
+import java.io.Serializable;
+
 /**
  * 
  * @author James Roberts jpr242
  *
  */
-public class BST<T extends Comparable<T>> implements BSTInterface<T> {
+public class BST<T extends Comparable<T>> implements BSTInterface<T>, Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2733308239343711200L;
 	protected BSTNode<T> root;
 	private int size;
 
@@ -40,7 +47,7 @@ public class BST<T extends Comparable<T>> implements BSTInterface<T> {
 		return contains(data, this.root);
 	}
 	
-	public boolean contains(T data, BSTNode<T> branch) {
+	private boolean contains(T data, BSTNode<T> branch) {
 		if(branch == null) {
 			return false;
 		} else if(data.compareTo(branch.getData()) == 0) {
@@ -107,7 +114,7 @@ public class BST<T extends Comparable<T>> implements BSTInterface<T> {
 		if(branch.getLeftNode() != null) {
 			toReturn += this.inOrder(branch.getLeftNode());
 		}
-		toReturn += branch.getData().toString();
+		toReturn += branch.getData().toString() + "\n";
 		if(branch.getRightNode() != null) {
 			toReturn += this.inOrder(branch.getRightNode());
 		}

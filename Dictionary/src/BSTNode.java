@@ -1,11 +1,18 @@
 
+
+import java.io.Serializable;
+
 /**
  * 
  * @author James Roberts jpr242
  *
  */
-public class BSTNode<T extends Comparable<T>> {
+public class BSTNode<T extends Comparable<T>> implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6960284628394295649L;
 	private T data;
 	private BSTNode<T> leftNode, rightNode;
 	

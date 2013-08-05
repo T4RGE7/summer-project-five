@@ -47,7 +47,7 @@ public class BST<T extends Comparable<T>> implements BSTInterface<T>, Serializab
 		return contains(data, this.root);
 	}
 	
-	public boolean contains(T data, BSTNode<T> branch) {
+	private boolean contains(T data, BSTNode<T> branch) {
 		if(branch == null) {
 			return false;
 		} else if(data.compareTo(branch.getData()) == 0) {
