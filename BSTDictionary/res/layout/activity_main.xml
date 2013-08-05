@@ -22,6 +22,14 @@
         android:layout_alignParentLeft="true"
         android:layout_below="@id/wordBox"
         android:text="@string/searchButtonString" />
+    
+    <Button
+        android:id="@+id/clearButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/wordBox"
+        android:text="@string/clearButtonString" />
 
     <Spinner
         android:id="@+id/pOSSpinner"
@@ -49,6 +57,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/add"
+        android:visibility="invisible" />
+    
+    <Button
+        android:id="@+id/remove"
+        android:layout_below="@id/definition"
+        android:layout_alignParentRight="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/remove"
         android:visibility="invisible" />
 
 </RelativeLayout>
