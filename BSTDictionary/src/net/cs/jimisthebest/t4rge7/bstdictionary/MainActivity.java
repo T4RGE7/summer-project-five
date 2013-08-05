@@ -101,6 +101,7 @@ public class MainActivity extends Activity {
 		Spinner pOS = (Spinner)this.findViewById(R.id.pOSSpinner);
 		Button add = (Button)this.findViewById(R.id.add);
 		Button remove = (Button)this.findViewById(R.id.remove);
+		definition.setHint("Enter The Definition");
 		
 		pOS.setClickable(true);
 		String wordToRemove = word.getText().toString();
@@ -151,6 +152,7 @@ public class MainActivity extends Activity {
 		pOS.setClickable(true);
 		word.setTextColor(Color.BLACK);
 		word.setSelection(0);
+		definition.setHint("Enter The Definition");
 	}
 	
 	public void addButton(View v) {
@@ -160,9 +162,10 @@ public class MainActivity extends Activity {
 		Button add = (Button)this.findViewById(R.id.add);
 		
 		String wordToAdd = word.getText().toString();
+		String regex = "[a-zA-Z-']*";
 		String definitionToAdd = definition.getText().toString();
 		pOS.setClickable(true);
-		if(wordToAdd.matches("[A-Z ^\\d]?[a-z A-Z \\- ' ^\\d]*") && definitionToAdd.length() > 0 && pOS.getSelectedItemPosition() > 0) {
+		if(wordToAdd.matches(regex) && definitionToAdd.length() > 0 && pOS.getSelectedItemPosition() > 0) {
 			this.dictionary.add(new Word(wordToAdd, pOS.getSelectedItem().toString(), definitionToAdd));
 			this.saveDictionary();
 			word.setText(wordToAdd + " Added Successfully!");
@@ -175,6 +178,14 @@ public class MainActivity extends Activity {
 			pOS.setClickable(true);
 			Button remove = (Button)this.findViewById(R.id.remove);
 			remove.setVisibility(-1);
+			definition.setHint("Enter The Definition");
+		} else {
+			if(!wordToAdd.matches(regex)) {
+				word.setText("Invalid word");
+			}
+			if(definitionToAdd.length() <= 0) {
+				definition.setHint("Invalid Definition");
+			}
 		}
 	}
 	
@@ -184,7 +195,8 @@ public class MainActivity extends Activity {
 		Spinner pOS = (Spinner)this.findViewById(R.id.pOSSpinner);
 		Button add = (Button)this.findViewById(R.id.add);
 		Button remove = (Button)this.findViewById(R.id.remove);
-		
+
+		definition.setHint("Enter The Definition");
 		Word temp = new Word(word.getText().toString(), "", "");
 		
 		definition.setVisibility(0);
