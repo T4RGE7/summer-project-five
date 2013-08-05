@@ -26,9 +26,8 @@ public class TestDriver {
 		}
 		System.out.println(test.toString());
 		
-		BSTDictionary temp = new BSTDictionary();
-		temp.add(new Word("hello", "adverb", "definition for hello"));
-		System.out.println(temp.containsGet("hello"));
+		BSTDictionary temp = new JavaDictionaryImporter().getDictionaryFromText();
+		System.out.println(temp.toString());
 	}
 	
 }

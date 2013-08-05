@@ -1,11 +1,18 @@
 package net.cs.jimisthebest.t4rge7.bstdictionary;
+
+import java.io.Serializable;
+
 /**
  * 
  * @author James Roberts jpr242
  *
  */
-public class Word implements Comparable<Word>{
+public class Word implements Comparable<Word>, Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7820589329434333947L;
 	private String word, partOfSpeach, definition;
 	
 	public Word(String word, String partOfSpeach, String definition) {

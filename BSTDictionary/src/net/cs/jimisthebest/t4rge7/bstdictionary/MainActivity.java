@@ -236,6 +236,8 @@ public class MainActivity extends Activity {
 		try {
 			if (oIS != null) {
 				this.dictionary = (BSTDictionary) oIS.readObject();
+				this.dictionary.contains(new Word("help", null, null));
+				word.setText((this.dictionary.contains(new Word("help", null, null))) ? "true" : "false");
 				oIS.close();
 			} else {
 				throw new IOException();
@@ -249,6 +251,7 @@ public class MainActivity extends Activity {
 				this.dictionary.add(new Word(split[0], split[1], split[2]));
 			}
 			temp.close();
+			this.saveDictionary();
 		} catch (ClassNotFoundException e) {
 			this.dictionary = new BSTDictionary();
 			while(temp.hasNextLine()) {
@@ -257,9 +260,10 @@ public class MainActivity extends Activity {
 				this.dictionary.add(new Word(split[0], split[1], split[2]));
 			}
 			temp.close();
+			this.saveDictionary();
 		}
 		
-		this.saveDictionary();
+		//this.saveDictionary();
 		
 	}
 	
@@ -268,13 +272,22 @@ public class MainActivity extends Activity {
 	    myDir.mkdirs();
 	    File dictionary = new File(myDir, "dictionary.dat");
 	    File dictionary2 = new File(myDir, "dictionary.txt");
+	    if(this.dictionary == null) {
+	    	return;
+//	    	try {
+//				throw new Exception("ARH");
+//			} catch (Exception e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
+	    }
 	    
 	    try {
 			ObjectOutputStream oOS = new ObjectOutputStream(new FileOutputStream(dictionary));
-			FileOutputStream fOS = new FileOutputStream(dictionary2);
-			fOS.write(this.dictionary.toString().getBytes());
-			fOS.flush();
-			fOS.close();
+//			FileOutputStream fOS = new FileOutputStream(dictionary2);
+//			fOS.write(this.dictionary.toString().getBytes());
+//			fOS.flush();
+//			fOS.close();
 			oOS.writeObject(this.dictionary);
 			oOS.flush();
 			oOS.close();
