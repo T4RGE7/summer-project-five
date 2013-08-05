@@ -64,8 +64,7 @@ public class BST<T extends Comparable<T>> implements BSTInterface<T> {
 		}
 	}
 	
-	private BSTNode<T> remove(T data, BSTNode<T> branch) {
-		
+	private BSTNode<T> remove(T data, BSTNode<T> branch) {	
 		if(branch == null) {
 			return branch;
 		} else if(data.compareTo(branch.getData()) == 0) {
@@ -77,7 +76,7 @@ public class BST<T extends Comparable<T>> implements BSTInterface<T> {
 				BSTNode<T> temp = branch.getLeftNode();
 				for(;temp.getRightNode() != null; temp = temp.getRightNode());
 				branch.setData(temp.getData());
-				remove(branch.getData(), branch.getLeftNode());
+				branch.setLeftNode(remove(branch.getData(), branch.getLeftNode()));
 			}
 		} else if(data.compareTo(branch.getData()) < 0) {
 			branch.setLeftNode(this.remove(data, branch.getLeftNode()));
@@ -85,7 +84,6 @@ public class BST<T extends Comparable<T>> implements BSTInterface<T> {
 			branch.setRightNode(this.remove(data, branch.getRightNode()));
 		}
 		return branch;
-		
 	}
 
 	@Override
