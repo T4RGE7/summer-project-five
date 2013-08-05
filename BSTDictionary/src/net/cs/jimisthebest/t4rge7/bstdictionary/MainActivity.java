@@ -1,6 +1,5 @@
 package net.cs.jimisthebest.t4rge7.bstdictionary;
 
-import net.cs.jimisthebest.t4rge7.xfixcalc.R;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
